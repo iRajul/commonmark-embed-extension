@@ -22,7 +22,7 @@ class EmbedExtension implements ConfigurableExtensionInterface
         $embeds = $environment->getConfiguration()->get('embeds');
 
         foreach ($embeds as $embed) {
-            $environment->addBlockStartParser(new EmbedStartParser($embed), 250);
+            $environment->addBlockStartParser(new EmbedStartParser($embed), 1000);
             // if ($embed['generator'] instanceof EmbedGeneratorInterface) {
             //     $environment->addBlockStartParser(new EmbedStartParser($embed['pattern'], $embed['generator']), 250);
             // } elseif (\is_string($embed['generator'])) {
