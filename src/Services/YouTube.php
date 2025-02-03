@@ -14,18 +14,23 @@ class YouTube implements ServiceInterface
     {
         // Output: <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/eX2qFMC8cFo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
 
-        return new HtmlElement(
-            'iframe',
-            [
-                'width' => '560',
-                'height' => '315',
-                'src' => 'https://www.youtube-nocookie.com/embed/' . $this->getId($node->getUrl()),
-                'title' => 'YouTube video player',
-                'frameborder' => '0',
-                'allow' => 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
-                'allowfullscreen' => '',
-            ],
-        );
+            return new HtmlElement(
+                'div',
+                ['class' => 'responsive-embed'], // Container with a custom class
+                [
+                    new HtmlElement(
+                        'iframe',
+                        [
+                            'src'             => 'https://www.youtube-nocookie.com/embed/' . $this->getId($node->getUrl()),
+                            'title'           => 'YouTube video player',
+                            'frameborder'     => '0',
+                            'allow'           => 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
+                            'allowfullscreen' => '',
+                        ]
+                    )
+                ]
+            );
+            
     }
 
     protected function getId($url)
